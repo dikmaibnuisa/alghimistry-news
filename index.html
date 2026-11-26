@@ -209,11 +209,28 @@ async function loadNews() {
             const title = document.createElement("h3");
             title.textContent = item.title;
 
-            const description = document.createElement("p");
-            description.textContent = item.description;
+           const image = document.createElement("img");
 
-            card.append(title, description);
-            container.appendChild(card);
+if (item.image) {
+    image.src = item.image;
+    image.alt = item.title;
+    image.loading = "lazy";
+    image.style.width = "100%";
+    image.style.borderRadius = "10px";
+    card.appendChild(image);
+}
+
+const description = document.createElement("p");
+description.textContent = item.description;
+
+const sourceLink = document.createElement("a");
+sourceLink.href = item.url;
+sourceLink.textContent = "Baca sumber berita";
+sourceLink.target = "_blank";
+sourceLink.rel = "noopener noreferrer";
+
+card.append(title, description, sourceLink);
+container.appendChild(card);
         });
 
     } catch (error) {
