@@ -146,7 +146,15 @@
   </div>
 
   <h2 class="section-title" id="news">Latest Financial News</h2>
-  <div id="news-container"></div>
+  <select id="news-filter" style="margin-bottom:20px;padding:10px;border-radius:8px;">
+  <option value="all">Semua Berita</option>
+  <option value="Employment / NFP">NFP / Jobs</option>
+  <option value="CPI / Inflation">CPI / Inflation</option>
+  <option value="PPI / Producer Prices">PPI</option>
+  <option value="US Economy">US Economy</option>
+</select>
+
+<div id="news-container"></div>
   <div class="news">
     <span class="tag">US ECONOMY · DEMO</span>
     <h3>Inflation and Federal Reserve Policy</h3>
@@ -202,7 +210,14 @@ async function loadNews() {
 
         container.innerHTML = "";
 
-        news.forEach(item => {
+        const filter = document.querySelector("#news-filter");
+const selectedCategory = filter ? filter.value : "all";
+
+const filteredNews = selectedCategory === "all"
+    ? news
+    : news.filter(item => item.category === selectedCategory);
+
+filteredNews.forEach(item => {
             const card = document.createElement("div");
             card.className = "news";
 
@@ -244,10 +259,11 @@ container.appendChild(card);
     }
 }
 
+document.querySelector("#news-filter").addEventListener("change", loadNews);
+
 loadNews();
 
 setInterval(loadNews, 1800000);
-</script>
 </script>
 </body>
 </html>

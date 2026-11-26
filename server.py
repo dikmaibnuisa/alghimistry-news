@@ -165,9 +165,22 @@ def get_news():
         except Exception as error:
             print("RSS error:", feed["category"], error)
 
-    news_with_images = [x for x in news if x.get("image")]
-    news_without_images = [x for x in news if not x.get("image")]
-    return (news_with_images + news_without_images)[:15]
+    selected_news = []
+
+    for category in [
+        "CPI / Inflation",
+        "PPI / Producer Prices",
+        "Employment / NFP",
+        "US Economy"
+    ]:
+        category_news = [
+            x for x in news
+            if x.get("category") == category
+        ]
+
+        selected_news.extend(category_news[:10])
+
+    return selected_news
 
 class Handler(SimpleHTTPRequestHandler):
     def do_GET(self):
