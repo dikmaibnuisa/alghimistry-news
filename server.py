@@ -257,5 +257,5 @@ class Handler(SimpleHTTPRequestHandler):
         else:
             super().do_GET()
 
-HTTPServer(("0.0.0.0", 8001), Handler).serve_forever()
+HTTPServer(("0.0.0.0", int(os.environ.get("PORT", 8001))), Handler).serve_forever()
 
