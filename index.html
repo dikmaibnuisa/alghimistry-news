@@ -13,27 +13,69 @@
       font-family: Arial, sans-serif;
     }
     header {
-      padding: 20px 6%;
-      border-bottom: 1px solid #222b3b;
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 260px;
+      height: 115px;
+      padding: 22px 18px;
+      background: #0b111d;
+      border-right: 1px solid #222b3b;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 15px;
+      justify-content: flex-start;
+      z-index: 100;
     }
     .logo { font-size: 22px; font-weight: bold; }
     .logo span { color: #d9ad61; }
-    .status { color: #70d6a0; font-size: 12px; }
-    nav {
-      padding: 15px 6%;
-      display: flex;
-      gap: 25px;
-      border-bottom: 1px solid #222b3b;
-      overflow-x: auto;
+    .status {
+      position: fixed;
+      top: 28px;
+      right: 32px;
+      z-index: 200;
+      color: #70d6a0;
+      font-size: 11px;
+      letter-spacing: 1.2px;
+      background: #101a26;
+      border: 1px solid #263648;
+      border-radius: 20px;
+      padding: 9px 14px;
     }
-    nav a { color: #9da9bb; text-decoration: none; white-space: nowrap; }
-    nav a:hover { color: #d9ad61; }
-    main { padding: 35px 6%; max-width: 1400px; margin: auto; }
+    nav {
+      position: fixed;
+      left: 0;
+      top: 115px;
+      bottom: 0;
+      width: 260px;
+      padding: 20px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      background: #0b111d;
+      border-right: 1px solid #222b3b;
+      overflow-y: auto;
+      z-index: 99;
+    }
+    nav a {
+      color: #9da9bb;
+      text-decoration: none;
+      padding: 12px 14px;
+      border-radius: 8px;
+      display: block;
+      font-size: 14px;
+    }
+    nav a:hover {
+      color: #d9ad61;
+      background: #171f2d;
+    }
+    nav .nav-group {
+      color: #66758b;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      padding: 20px 14px 7px;
+    }
+    main { padding: 35px 4%; max-width: none; width: calc(100% - 260px); margin-left: 260px; }
     .welcome { margin-bottom: 30px; }
     .welcome small { color: #d9ad61; letter-spacing: 2px; }
     h1 { font-size: 30px; margin: 12px 0; }
@@ -89,24 +131,247 @@
       color: #8995a8;
       font-size: 12px;
       text-align: center;
+      margin-left: 260px;
     }
     @media(max-width:600px) {
       h1 { font-size: 25px; }
       main { padding: 25px 5%; }
     }
+  
+/* ALGHIMISTRY SESSION PULSE */
+.session-pulse {
+  margin: 28px 0 38px;
+  padding: 24px;
+  background: linear-gradient(145deg, #101827, #0b111c);
+  border: 1px solid #263449;
+  border-radius: 20px;
+  color: #e8edf5;
+}
+.sp-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.sp-eyebrow {
+  color: #d9ad61;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+.sp-title {
+  font-size: 25px;
+  margin: 7px 0;
+  color: #f3f5f8;
+}
+.sp-subtitle {
+  color: #8492a8;
+  font-size: 12px;
+}
+.sp-live {
+  color: #70d6a0;
+  border: 1px solid #28523f;
+  background: #10271e;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+}
+.sp-hero {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+.sp-clock, .sp-active {
+  background: #111b2a;
+  border: 1px solid #253247;
+  border-radius: 15px;
+  padding: 20px;
+}
+.sp-label {
+  color: #8492a8;
+  font-size: 10px;
+  letter-spacing: 1.2px;
+}
+.sp-time {
+  font-size: clamp(30px, 4vw, 46px);
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin: 10px 0;
+  font-variant-numeric: tabular-nums;
+}
+.sp-date {
+  color: #8492a8;
+  font-size: 12px;
+}
+.sp-active-name {
+  font-size: 23px;
+  color: #d9ad61;
+  margin: 10px 0;
+}
+.sp-countdown {
+  color: #e8edf5;
+  font-size: 13px;
+  margin-top: 12px;
+  font-variant-numeric: tabular-nums;
+}
+.sp-section-label {
+  color: #d9ad61;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin: 22px 0 14px;
+}
+.sp-session-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+.sp-card {
+  background: #111722;
+  border: 1px solid #253247;
+  border-radius: 13px;
+  padding: 16px;
+  transition: border-color .2s, transform .2s;
+}
+.sp-card.is-open {
+  border-color: #8b6c35;
+  background: linear-gradient(145deg, #191a1b, #111722);
+}
+.sp-card:hover { transform: translateY(-2px); }
+.sp-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+.sp-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.sp-state {
+  color: #7f8ba0;
+  font-size: 9px;
+  letter-spacing: .8px;
+}
+.sp-card.is-open .sp-state { color: #d9ad61; }
+.sp-card h3 {
+  font-size: 17px;
+  margin: 14px 0 6px;
+}
+.sp-hours {
+  color: #8492a8;
+  font-size: 11px;
+}
+.sp-timeline {
+  background: #111722;
+  border: 1px solid #253247;
+  border-radius: 14px;
+  padding: 18px;
+}
+.sp-timeline-row {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  align-items: center;
+  gap: 12px;
+  margin: 14px 0;
+}
+.sp-timeline-name {
+  color: #aab5c5;
+  font-size: 11px;
+}
+.sp-track {
+  height: 9px;
+  background: #263449;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.sp-bar {
+  height: 100%;
+  border-radius: 20px;
+  position: absolute;
+}
+.sp-now {
+  position: absolute;
+  top: -5px;
+  bottom: -5px;
+  width: 2px;
+  background: #f4f6fa;
+  z-index: 2;
+  box-shadow: 0 0 8px #fff;
+}
+.sp-ticks {
+  display: flex;
+  justify-content: space-between;
+  color: #718096;
+  font-size: 10px;
+  margin-left: 84px;
+}
+.sp-golden {
+  margin-top: 18px;
+  padding: 16px;
+  border: 1px solid #5b492c;
+  background: #191811;
+  border-radius: 12px;
+}
+.sp-golden strong {
+  color: #d9ad61;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+.sp-golden p {
+  color: #e8edf5;
+  font-size: 13px;
+  margin-top: 7px;
+}
+.sp-note {
+  color: #718096;
+  font-size: 10px;
+  line-height: 1.6;
+  margin-top: 14px;
+}
+@media(max-width:850px) {
+  .sp-session-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media(max-width:600px) {
+  .session-pulse { padding: 16px; }
+  .sp-hero { grid-template-columns: 1fr; }
+  .sp-title { font-size: 22px; }
+  .sp-timeline { padding: 12px; }
+  .sp-timeline-row { grid-template-columns: 58px 1fr; gap: 8px; }
+  .sp-ticks { margin-left: 66px; }
+}
+
   </style>
 </head>
 <body>
 
 <header>
-  <div class="logo">ALGHIMISTRY <span>NEWS.</span></div>
+  <div class="logo" style="display:flex;align-items:center;gap:12px;">
+  <img src="alghimistry-logo.jpg" alt="Alghimistry Logo" style="height:48px;width:auto;display:block;">
+  <span style="font-size:22px;font-weight:800;letter-spacing:1px;color:#d9ad61;">ALGHIMISTRY</span>
+</div>
   <div class="status">● MARKET INTELLIGENCE</div>
 </header>
 
 <nav>
   <a href="#home">Dashboard</a>
   <a href="#market">Market Overview</a>
-  <a href="#news">Financial News</a>
+
+  <div class="nav-group">STUDY</div>
+  <a href="#study-session">Sesi Jam</a>
+  <a href="#study-journal">Jurnal Trading</a>
+  <a href="#study-equity">Kalkulator Equity</a>
+  <a href="#study-pair">Pair Kalkulator</a>
+  <a href="#study-portfolio">Portofolio Kalkulator</a>
+
+  <div class="nav-group">INTELLIGENCE</div>
+  <a href="news.html">Financial News</a>
   <a href="#ai">AI Intelligence</a>
   <a href="#calendar">Economic Calendar</a>
 </nav>
@@ -121,52 +386,165 @@
     </p>
   </section>
 
-  <h2 class="section-title" id="market">Market Overview</h2>
-  <div class="grid">
-    <div class="card">
-      <small>GOLD / XAUUSD</small>
-      <div class="value gold">XAUUSD</div>
-      <small>Gold Market</small>
+  
+
+<section class="session-pulse" id="study-session">
+  <div class="sp-top">
+    <div>
+      <div class="sp-eyebrow">ALGHI MISTRY / STUDY</div>
+      <h2 class="sp-title">Session Pulse</h2>
+      <div class="sp-subtitle">Global Forex Market Hours · Jakarta Time</div>
     </div>
-    <div class="card">
-      <small>US DOLLAR</small>
-      <div class="value">USD</div>
-      <small>Dollar Index</small>
+    <div class="sp-live">● MARKET CLOCK LIVE</div>
+  </div>
+
+  <div class="sp-hero">
+    <div class="sp-clock">
+      <div class="sp-label">CURRENT MARKET TIME · WIB</div>
+      <div class="sp-time" id="sp-clock">--:--:--</div>
+      <div class="sp-date" id="sp-date">Loading Jakarta time...</div>
     </div>
-    <div class="card">
-      <small>US TREASURY YIELD</small>
-      <div class="value">10Y</div>
-      <small>Government Bonds</small>
-    </div>
-    <div class="card">
-      <small>FED POLICY</small>
-      <div class="value">FOMC</div>
-      <small>Interest Rate Outlook</small>
+    <div class="sp-active">
+      <div class="sp-label">ACTIVE MARKET SESSION</div>
+      <div class="sp-active-name" id="sp-active">Loading...</div>
+      <div class="sp-subtitle" id="sp-active-status">Checking session status</div>
+      <div class="sp-countdown" id="sp-countdown">--</div>
     </div>
   </div>
 
-  <h2 class="section-title" id="news">Latest Financial News</h2>
-  <select id="news-filter" style="margin-bottom:20px;padding:10px;border-radius:8px;">
-  <option value="all">Semua Berita</option>
-  <option value="Employment / NFP">NFP / Jobs</option>
-  <option value="CPI / Inflation">CPI / Inflation</option>
-  <option value="PPI / Producer Prices">PPI</option>
-  <option value="US Economy">US Economy</option>
-</select>
+  <div class="sp-section-label">SESSION OVERVIEW</div>
+  <div class="sp-session-grid" id="sp-session-grid"></div>
 
-<div id="news-container"></div>
-  <div class="news">
-    <span class="tag">US ECONOMY · DEMO</span>
-    <h3>Inflation and Federal Reserve Policy</h3>
-    <p>Berita ekonomi Amerika Serikat akan ditampilkan di bagian ini setelah sistem berita terhubung.</p>
+  <div class="sp-section-label">24H SESSION FLOW</div>
+  <div class="sp-timeline">
+    <div class="sp-ticks">
+      <span>00:00</span><span>06:00</span><span>12:00</span>
+      <span>18:00</span><span>24:00</span>
+    </div>
+    <div id="sp-timeline-rows"></div>
+    <div class="sp-golden">
+      <strong>✦ GOLDEN WINDOW</strong>
+      <p>London × New York overlap</p>
+      <div class="sp-subtitle" id="sp-overlap">Monitoring session overlap...</div>
+    </div>
   </div>
-  <div class="news">
-    <span class="tag">GLOBAL MARKET · DEMO</span>
-    <h3>US Dollar and Gold Market Outlook</h3>
-    <p>Analisis perkembangan USD, Treasury Yield, dan pengaruhnya terhadap harga emas.</p>
+  <div class="sp-note">
+    Jam sesi merupakan perkiraan waktu pasar dan dapat bergeser mengikuti
+    daylight saving time. Sesi aktif bukan sinyal buy atau sell.
   </div>
 
-  <h2 class="section-title" id="ai">AI Fundamental Intelligence</h2>
+<!-- SESSION PULSE EDUCATION -->
+<section class="sp-education" style="margin-top:28px;color:#e8eaf0;">
+  <div style="margin-bottom:18px;">
+    <div style="font-size:11px;letter-spacing:1.8px;color:#c9a45c;font-weight:700;">MARKET EDUCATION</div>
+    <h2 style="font-size:24px;margin:8px 0;">Pahami Sifat &amp; Volatilitas Setiap Sesi</h2>
+    <p style="color:#969eae;font-size:14px;line-height:1.7;margin:0;">
+      Kenali karakter umum setiap sesi dan hal yang bisa diperhatikan saat memantau XAUUSD.
+    </p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;">
+    <article style="background:#10151f;border:1px solid #293140;border-radius:14px;padding:18px;">
+      <div style="font-size:24px;margin-bottom:10px;">🌅</div>
+      <div style="font-size:11px;color:#c9a45c;letter-spacing:1px;font-weight:700;">SYDNEY SESSION</div>
+      <h3 style="margin:8px 0;font-size:17px;">Awal Market</h3>
+      <p style="font-size:13px;color:#a6adba;line-height:1.7;margin:0;">
+        Aktivitas pasar mulai terbentuk. Pergerakan bisa relatif lebih tenang dibanding sesi yang lebih ramai.
+      </p>
+      <div style="font-size:12px;color:#d5b36b;margin-top:12px;">Fokus: amati range awal</div>
+    </article>
+
+    <article style="background:#10151f;border:1px solid #293140;border-radius:14px;padding:18px;">
+      <div style="font-size:24px;margin-bottom:10px;">🏯</div>
+      <div style="font-size:11px;color:#c9a45c;letter-spacing:1px;font-weight:700;">TOKYO SESSION</div>
+      <h3 style="margin:8px 0;font-size:17px;">Aktivitas Asia</h3>
+      <p style="font-size:13px;color:#a6adba;line-height:1.7;margin:0;">
+        Likuiditas Asia meningkat. Harga dapat bergerak dalam range atau mulai membentuk arah.
+      </p>
+      <div style="font-size:12px;color:#d5b36b;margin-top:12px;">Fokus: high-low sesi Asia</div>
+    </article>
+
+    <article style="background:#10151f;border:1px solid #293140;border-radius:14px;padding:18px;">
+      <div style="font-size:24px;margin-bottom:10px;">🏛️</div>
+      <div style="font-size:11px;color:#c9a45c;letter-spacing:1px;font-weight:700;">LONDON SESSION</div>
+      <h3 style="margin:8px 0;font-size:17px;">Likuiditas Eropa</h3>
+      <p style="font-size:13px;color:#a6adba;line-height:1.7;margin:0;">
+        Aktivitas pasar biasanya bertambah. Perhatikan apakah harga menembus atau menyapu range Asia.
+      </p>
+      <div style="font-size:12px;color:#d5b36b;margin-top:12px;">Fokus: breakout dan sweep</div>
+    </article>
+
+    <article style="background:#10151f;border:1px solid #293140;border-radius:14px;padding:18px;">
+      <div style="font-size:24px;margin-bottom:10px;">🗽</div>
+      <div style="font-size:11px;color:#c9a45c;letter-spacing:1px;font-weight:700;">NEW YORK SESSION</div>
+      <h3 style="margin:8px 0;font-size:17px;">USD &amp; Data AS</h3>
+      <p style="font-size:13px;color:#a6adba;line-height:1.7;margin:0;">
+        Pergerakan XAUUSD dapat meningkat saat aktivitas USD dan rilis data ekonomi Amerika Serikat.
+      </p>
+      <div style="font-size:12px;color:#d5b36b;margin-top:12px;">Fokus: news, USD, yield</div>
+    </article>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:18px;">
+    <div style="background:linear-gradient(135deg,#191711,#11151d);border:1px solid #4b3d25;border-radius:14px;padding:20px;">
+      <div style="font-size:11px;letter-spacing:1.4px;color:#c9a45c;font-weight:700;">SESSION COUNTDOWN</div>
+      <h3 style="font-size:19px;margin:10px 0;">Sesi berikutnya / tutup dalam</h3>
+      <div id="sp-education-countdown" style="font-size:22px;font-weight:800;color:#e5c17a;line-height:1.5;">Menunggu data sesi...</div>
+      <p id="sp-education-status" style="font-size:12px;color:#a6adba;margin:8px 0 0;">
+        Countdown mengikuti jam Session Pulse.
+      </p>
+    </div>
+
+    <div style="background:#10151f;border:1px solid #293140;border-radius:14px;padding:20px;">
+      <div style="font-size:11px;letter-spacing:1.4px;color:#c9a45c;font-weight:700;">TRADING REMINDER</div>
+      <h3 style="font-size:19px;margin:10px 0;">Volatilitas bukan kepastian</h3>
+      <p style="font-size:13px;color:#a6adba;line-height:1.7;margin:0;">
+        Sesi yang ramai tidak selalu berarti harga bergerak satu arah. Perhatikan struktur harga,
+        kalender ekonomi, spread, dan risiko sebelum mengambil keputusan.
+      </p>
+    </div>
+  </div>
+
+  <div style="margin-top:18px;background:#0d1118;border:1px solid #252c38;border-left:3px solid #c9a45c;border-radius:10px;padding:16px 18px;">
+    <div style="font-size:11px;letter-spacing:1.3px;color:#c9a45c;font-weight:700;margin-bottom:8px;">MARKET SESSION DISCLAIMER</div>
+    <p style="font-size:12px;color:#9ca4b2;line-height:1.8;margin:0;">
+      Jam sesi merupakan perkiraan waktu WIB dan dapat bergeser mengikuti daylight saving time.
+      Karakter serta volatilitas setiap sesi hanya kecenderungan umum, bukan kepastian.
+      Informasi ini untuk edukasi, bukan sinyal atau rekomendasi buy/sell.
+      Selalu gunakan analisis dan manajemen risiko.
+    </p>
+  </div>
+</section>
+
+</section>
+
+<h2 class="section-title" id="market">Market Overview</h2>
+
+<div class="tradingview-widget-container" style="width:100%;margin-bottom:30px;">
+  <div class="tradingview-widget-container__widget"></div>
+  <div class="tradingview-widget-copyright">
+    <a href="https://www.tradingview.com/markets/" target="_blank" rel="noopener nofollow">
+      Market data by TradingView
+    </a>
+  </div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+  {
+    "symbols": [
+      {"proName":"OANDA:XAUUSD","title":"Gold / XAUUSD"},
+      {"proName":"TVC:DXY","title":"US Dollar Index"},
+      {"proName":"TVC:US10Y","title":"US 10Y Yield"},
+      {"proName":"TVC:USOIL","title":"WTI Oil"}
+    ],
+    "showSymbolLogo": true,
+    "isTransparent": true,
+    "displayMode": "adaptive",
+    "colorTheme": "dark",
+    "locale": "en"
+  }
+  </script>
+</div>
+
+<h2 class="section-title" id="ai">AI Fundamental Intelligence</h2>
   <div class="card ai">
     <span class="tag">ALGHIMISTRY AI ENGINE</span>
     <h2 style="margin:15px 0">Market Intelligence</h2>
@@ -179,12 +557,179 @@
     </button>
   </div>
 
-  <h2 class="section-title" id="calendar">Economic Calendar</h2>
-  <div class="news">
-    <span class="tag">ECONOMIC DATA</span>
-    <h3>US Economic Calendar</h3>
-    <p>Kalender CPI, PPI, NFP, PCE, FOMC, dan data ekonomi Amerika Serikat akan diintegrasikan pada tahap berikutnya.</p>
-  </div>
+  <section id="calendar-page" class="feature-page">
+<h2 class="section-title" id="calendar">Economic Calendar</h2>
+
+  <section style="
+    background:#0e1118;
+    border:1px solid #2b303b;
+    border-radius:14px;
+    padding:20px;
+    margin-bottom:18px;
+  ">
+    <div style="font-size:11px;font-weight:700;letter-spacing:1px;color:#858b98;">
+      FUNDAMENTAL MONITORING
+    </div>
+    <h3 style="margin:12px 0 8px;color:#f1f3f8;font-size:20px;">
+      USD Focus (United States)
+    </h3>
+    <p style="margin:0;color:#9da4b2;font-size:14px;line-height:1.6;">
+      Pantau jadwal rilis data ekonomi Amerika Serikat yang berpotensi
+      memengaruhi US Dollar dan harga Emas (XAUUSD).
+    </p>
+  </section>
+
+  <section style="
+    background:#191711;
+    border:1px solid #3b3220;
+    border-radius:12px;
+    padding:14px 18px;
+    margin-bottom:18px;
+    color:#c9a45c;
+    font-size:13px;
+    line-height:1.6;
+  ">
+    <strong>Trading Tip:</strong>
+    Perhatikan CPI, PCE, PPI, NFP, ISM, dan FOMC.
+    Volatilitas bisa meningkat saat data aktual berbeda dari ekspektasi.
+  </section>
+
+  <section style="
+    width:min(1100px, calc(100vw - 48px));
+    margin-left:calc((100% - min(1100px, calc(100vw - 48px))) / 2);
+    box-sizing:border-box;
+    background:#0e1118;
+    border:1px solid #2b303b;
+    border-radius:14px;
+    padding:12px;
+    overflow:hidden;
+    color-scheme:dark;
+    --tv-widget-background-color:transparent;
+    --tv-widget-text-color:#d1d4dc;
+    --tv-widget-accent-color:#d4ad62;
+  ">
+    <tv-economic-calendar
+  countries="us"
+  theme="dark"
+  style="display:block;width:100%;height:650px;min-height:650px;background:transparent;">
+</tv-economic-calendar>
+  </section>
+
+  <script type="module" src="https://widgets.tradingview-widget.com/w/id/tv-economic-calendar.js"></script>
+</section>
+
+<script>
+(function () {
+  const sessions = [
+    { name: "Sydney", code: "SYD", color: "#c18a52", start: 5, end: 14 },
+    { name: "Tokyo", code: "TKY", color: "#d9ad61", start: 7, end: 16 },
+    { name: "London", code: "LDN", color: "#5a9cc5", start: 14, end: 23 },
+    { name: "New York", code: "NY", color: "#9b78d1", start: 19, end: 4 }
+  ];
+
+  const $ = id => document.getElementById(id);
+  const pad = n => String(n).padStart(2, "0");
+
+  function getJakartaParts() {
+    const parts = new Intl.DateTimeFormat("en-GB", {
+      timeZone: "Asia/Jakarta",
+      hour: "2-digit", minute: "2-digit", second: "2-digit",
+      weekday: "long", day: "2-digit", month: "long", year: "numeric",
+      hourCycle: "h23"
+    }).formatToParts(new Date());
+    const out = {};
+    parts.forEach(p => out[p.type] = p.value);
+    return out;
+  }
+
+  function hourNow() {
+    const p = getJakartaParts();
+    return Number(p.hour) + Number(p.minute) / 60 + Number(p.second) / 3600;
+  }
+
+  function isOpen(s, h) {
+    return s.start < s.end
+      ? h >= s.start && h < s.end
+      : h >= s.start || h < s.end;
+  }
+
+  function remaining(s, h) {
+    let end = s.end;
+    if (s.start > s.end && h >= s.start) end += 24;
+    if (end <= h) end += 24;
+    return Math.floor((end - h) * 3600);
+  }
+
+  function fmtCountdown(sec) {
+    return pad(Math.floor(sec / 3600)) + ":" +
+      pad(Math.floor(sec % 3600 / 60)) + ":" + pad(sec % 60);
+  }
+
+  function render() {
+    const p = getJakartaParts();
+    const h = hourNow();
+    const active = sessions.filter(s => isOpen(s, h));
+
+    $("sp-clock").textContent = p.hour + ":" + p.minute + ":" + p.second;
+    $("sp-date").textContent =
+      p.weekday + ", " + p.day + " " + p.month + " " + p.year + " · Jakarta";
+
+    if (active.length) {
+      const main = active[active.length - 1];
+      $("sp-active").textContent = active.map(s => s.name).join(" + ");
+      $("sp-active-status").textContent = active.length > 1
+        ? "Multiple sessions active"
+        : main.name + " session is open";
+      const nearest = Math.min(...active.map(s => remaining(s, h)));
+      $("sp-countdown").textContent = "Session close in " + fmtCountdown(nearest);
+    } else {
+      const next = sessions
+        .map(s => ({s, delta: (s.start - h + 24) % 24}))
+        .sort((a, b) => a.delta - b.delta)[0];
+      $("sp-active").textContent = "Market transition";
+      $("sp-active-status").textContent = "No main session currently open";
+      $("sp-countdown").textContent =
+        next.s.name + " opens in " + fmtCountdown(Math.floor(next.delta * 3600));
+    }
+
+    $("sp-session-grid").innerHTML = sessions.map(s => {
+      const open = isOpen(s, h);
+      const hours = pad(s.start) + ":00 – " + pad(s.end) + ":00 WIB";
+      return `<div class="sp-card ${open ? "is-open" : ""}">
+        <div class="sp-card-head">
+          <span class="sp-dot" style="background:${s.color}"></span>
+          <span class="sp-state">${open ? "● OPEN" : "CLOSED"}</span>
+        </div>
+        <h3>${s.name}</h3>
+        <div class="sp-hours">${hours}</div>
+      </div>`;
+    }).join("");
+
+    $("sp-timeline-rows").innerHTML = sessions.map(s => {
+      const start = s.start / 24 * 100;
+      const width = (s.end > s.start ? s.end - s.start : 24 - s.start + s.end) / 24 * 100;
+      const now = h / 24 * 100;
+      return `<div class="sp-timeline-row">
+        <div class="sp-timeline-name">${s.code}</div>
+        <div class="sp-track">
+          <div class="sp-bar" style="left:${start}%;width:${width}%;background:${s.color}"></div>
+          <div class="sp-now" style="left:${now}%"></div>
+        </div>
+      </div>`;
+    }).join("");
+
+    const overlapStart = Math.max(sessions[2].start, sessions[3].start);
+    const overlapEnd = Math.min(sessions[2].end, sessions[3].end);
+    $("sp-overlap").textContent = overlapEnd > overlapStart
+      ? pad(overlapStart) + ":00 – " + pad(overlapEnd) + ":00 WIB · Monitor XAUUSD"
+      : "Overlap time shifts with daylight saving";
+  }
+
+  render();
+  setInterval(render, 1000);
+})();
+</script>
+
 </main>
 
 <footer>
@@ -192,78 +737,83 @@
   <p style="margin-top:8px">Informasi dan analisis bukan jaminan pergerakan pasar.</p>
 </footer>
 
+
+
+<!-- ALGHIMISTRY FEATURE NAVIGATION -->
 <script>
-async function loadNews() {
-    try {
-      const response = await fetch("https://fictional-waffle-qvgq79gq46v736x59-8001.app.github.dev/api/news");
+(function () {
+  const main = document.querySelector("main");
+  if (!main) return;
 
-        if (!response.ok) {
-            throw new Error("Gagal mengambil berita");
-        }
+  const sessionPage = document.getElementById("study-session");
+  const calendarPage = document.getElementById("calendar-page");
 
-        const news = await response.json();
-        const container = document.querySelector("#news-container");
+  function showPage(page) {
+    Array.from(main.children).forEach(el => {
+      if (el.tagName === "SCRIPT") return;
 
-        if (!container) {
-            throw new Error("Tempat berita #news-container tidak ditemukan");
-        }
+      if (page === "session") {
+        el.style.display = el === sessionPage ? "" : "none";
+      } else if (page === "calendar") {
+        el.style.display = el === calendarPage ? "" : "none";
+      } else {
+        el.style.display =
+          (el === sessionPage || el === calendarPage) ? "none" : "";
+      }
+    });
 
-        container.innerHTML = "";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
 
-        const filter = document.querySelector("#news-filter");
-const selectedCategory = filter ? filter.value : "all";
+  document.querySelectorAll("nav a").forEach(link => {
+    link.addEventListener("click", function (event) {
+      const href = this.getAttribute("href");
 
-const filteredNews = selectedCategory === "all"
-    ? news
-    : news.filter(item => item.category === selectedCategory);
+      if (href === "#study-session") {
+        event.preventDefault();
+        showPage("session");
+      } else if (href === "#calendar") {
+        event.preventDefault();
+        showPage("calendar");
+      } else if (href === "#home") {
+        event.preventDefault();
+        showPage("dashboard");
+      } else if (href && href.startsWith("#")) {
+        showPage("dashboard");
+      }
+    });
+  });
 
-filteredNews.forEach(item => {
-            const card = document.createElement("div");
-            card.className = "news";
-
-            const title = document.createElement("h3");
-            title.textContent = item.title;
-
-           const image = document.createElement("img");
-
-if (item.image) {
-    image.src = item.image;
-    image.alt = item.title;
-    image.loading = "lazy";
-    image.style.width = "100%";
-    image.style.borderRadius = "10px";
-    card.appendChild(image);
-}
-
-const description = document.createElement("p");
-description.textContent = item.description;
-
-const sourceLink = document.createElement("a");
-sourceLink.href = item.url;
-sourceLink.textContent = "Baca sumber berita";
-sourceLink.target = "_blank";
-sourceLink.rel = "noopener noreferrer";
-
-card.append(title, description, sourceLink);
-container.appendChild(card);
-        });
-
-    } catch (error) {
-        const container = document.querySelector("#news-container");
-
-        if (container) {
-            container.textContent = "API ERROR: " + error.message;
-        }
-
-        console.error("News API:", error);
-    }
-}
-
-document.querySelector("#news-filter").addEventListener("change", loadNews);
-
-loadNews();
-
-setInterval(loadNews, 1800000);
+  showPage("dashboard");
+})();
 </script>
+
+
+<!-- SESSION PULSE COUNTDOWN MIRROR -->
+<script>
+(function () {
+  const source = document.getElementById("sp-countdown");
+  const target = document.getElementById("sp-education-countdown");
+  const status = document.getElementById("sp-education-status");
+  if (!source || !target || !status) return;
+
+  function syncCountdown() {
+    const text = source.textContent.trim();
+    if (!text) return;
+
+    target.textContent = text;
+
+    if (text.toLowerCase().includes("opens in")) {
+      status.textContent = "Hitung mundur menuju sesi berikutnya · WIB";
+    } else {
+      status.textContent = "Hitung mundur menuju penutupan sesi aktif · WIB";
+    }
+  }
+
+  syncCountdown();
+  setInterval(syncCountdown, 1000);
+})();
+</script>
+
 </body>
 </html>

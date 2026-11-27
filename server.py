@@ -7,6 +7,8 @@ import re
 import html
 import os
 import urllib.parse
+from datetime import datetime, timezone, timedelta
+from email.utils import parsedate_to_datetime
 
 def load_env():
     try:
@@ -30,7 +32,7 @@ FEEDS = [
         "category": "CPI / Inflation"
     },
     {
-        "url": "https://news.google.com/rss/search?q=US+PPI+producer+prices&hl=en-US&gl=US&ceid=US:en",
+        "url": "https://news.google.com/rss/search?q=%22US+producer+prices%22+OR+%22US+PPI%22+OR+%22US+producer+price+index%22+-meaning+-definition+-Sweden&hl=en-US&gl=US&ceid=US:en",
         "category": "PPI / Producer Prices"
     }
 ]
@@ -52,18 +54,22 @@ def get_finnhub_news():
         news = []
 
         keywords = (
-            "federal reserve", "fed", "fomc",
+            "federal reserve", "fomc",
             "fed rate", "interest rate", "rate hike",
             "rate cut", "inflation", "cpi",
             "core cpi", "ppi", "pce", "core pce",
             "nonfarm payroll", "nfp", "payrolls",
             "unemployment", "jobless claims",
             "treasury yield", "us yields",
-            "dollar index", "us dollar", "usd",
+            "dollar index", "us dollar", 
             "gold price", "gold futures", "xauusd",
             "crude oil", "oil prices", "energy prices",
-            "us economy", "us economic data",
-            "tariffs", "trade war"
+            
+            "tariffs", "trade war",
+"iran", "israel", "strait of hormuz",
+"hormuz", "opec", "geopolitical risk",
+"sanctions", "red sea", "middle east",
+"russia", "ukraine"
         )
 
         for item in data:
@@ -127,6 +133,38 @@ def get_rss_image(item):
     return ""
 
 
+def parse_news_date(date_value):
+    if not date_value:
+        return None
+
+    try:
+        timestamp = float(date_value)
+        return datetime.fromtimestamp(timestamp, timezone.utc)
+    except (ValueError, TypeError, OSError):
+        pass
+
+    try:
+        return parsedate_to_datetime(date_value).astimezone(timezone.utc)
+    except (ValueError, TypeError, OverflowError):
+        return None
+
+
+def parse_news_date(date_value):
+    if not date_value:
+        return None
+
+    try:
+        timestamp = float(date_value)
+        return datetime.fromtimestamp(timestamp, timezone.utc)
+    except (ValueError, TypeError, OSError):
+        pass
+
+    try:
+        return parsedate_to_datetime(date_value).astimezone(timezone.utc)
+    except (ValueError, TypeError, OverflowError):
+        return None
+
+
 def get_news():
     news = get_finnhub_news()
 
@@ -165,6 +203,20 @@ def get_news():
         except Exception as error:
             print("RSS error:", feed["category"], error)
 
+    now = datetime.now(timezone.utc)
+    cutoff = now - timedelta(days=7)
+
+    recent_news = []
+
+    for item in news:
+        news_date = parse_news_date(item.get("date"))
+
+        if news_date and cutoff <= news_date <= now:
+            item["date"] = news_date.isoformat()
+            recent_news.append(item)
+
+    recent_news.sort(key=lambda x: x["date"], reverse=True)
+
     selected_news = []
 
     for category in [
@@ -174,7 +226,7 @@ def get_news():
         "US Economy"
     ]:
         category_news = [
-            x for x in news
+            x for x in recent_news
             if x.get("category") == category
         ]
 

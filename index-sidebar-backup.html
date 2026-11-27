@@ -1,0 +1,234 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alghimistry News | Market Intelligence</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #090d16;
+      color: #e8edf5;
+      font-family: Arial, sans-serif;
+    }
+    header {
+      padding: 20px 6%;
+      border-bottom: 1px solid #222b3b;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .logo { font-size: 22px; font-weight: bold; }
+    .logo span { color: #d9ad61; }
+    .status { color: #70d6a0; font-size: 12px; }
+    nav {
+      padding: 15px 6%;
+      display: flex;
+      gap: 25px;
+      border-bottom: 1px solid #222b3b;
+      overflow-x: auto;
+    }
+    nav a { color: #9da9bb; text-decoration: none; white-space: nowrap; }
+    nav a:hover { color: #d9ad61; }
+    main { padding: 35px 6%; max-width: 1400px; margin: auto; }
+    .welcome { margin-bottom: 30px; }
+    .welcome small { color: #d9ad61; letter-spacing: 2px; }
+    h1 { font-size: 30px; margin: 12px 0; }
+    .muted { color: #8995a8; line-height: 1.6; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 16px;
+      margin: 25px 0 35px;
+    }
+    .card {
+      background: #111927;
+      border: 1px solid #263246;
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .card small { color: #98a5b8; }
+    .value { font-size: 25px; font-weight: bold; margin: 13px 0; }
+    .gold { color: #e5bd75; }
+    .green { color: #6bd69a; }
+    .red { color: #ed7777; }
+    .section-title { margin: 25px 0 16px; font-size: 20px; }
+    .news {
+      background: #111927;
+      border: 1px solid #263246;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 13px;
+    }
+    .tag {
+      color: #e5bd75;
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+    .news h3 { margin: 12px 0; font-size: 17px; }
+    .news p { color: #98a5b8; line-height: 1.6; font-size: 14px; }
+    .ai {
+      border: 1px solid #80643b;
+      background: linear-gradient(135deg,#201c17,#111927);
+    }
+    button {
+      background: #d9ad61;
+      border: none;
+      border-radius: 7px;
+      padding: 11px 17px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+    footer {
+      border-top: 1px solid #263246;
+      padding: 25px 6%;
+      color: #8995a8;
+      font-size: 12px;
+      text-align: center;
+    }
+    @media(max-width:600px) {
+      h1 { font-size: 25px; }
+      main { padding: 25px 5%; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo" style="display:flex;align-items:center;gap:12px;">
+  <img src="alghimistry-logo.jpg" alt="Alghimistry Logo" style="height:48px;width:auto;display:block;">
+  <span style="font-size:22px;font-weight:800;letter-spacing:1px;color:#d9ad61;">ALGHIMISTRY</span>
+</div>
+  <div class="status">● MARKET INTELLIGENCE</div>
+</header>
+
+<nav>
+  <a href="#home">Dashboard</a>
+  <a href="#market">Market Overview</a>
+  <a href="news.html">Financial News</a>
+  <a href="#ai">AI Intelligence</a>
+  <a href="#calendar">Economic Calendar</a>
+</nav>
+
+<main id="home">
+  <section class="welcome">
+    <small>FINANCIAL INTELLIGENCE PLATFORM</small>
+    <h1>Understand The Market.<br><span class="gold">Anticipate The Future.</span></h1>
+    <p class="muted">
+      Platform berita ekonomi dan analisis fundamental
+      berbasis AI untuk membantu trader memahami pergerakan pasar.
+    </p>
+  </section>
+
+  
+<h2 class="section-title" id="market">Market Overview</h2>
+
+<div class="tradingview-widget-container" style="width:100%;margin-bottom:30px;">
+  <div class="tradingview-widget-container__widget"></div>
+  <div class="tradingview-widget-copyright">
+    <a href="https://www.tradingview.com/markets/" target="_blank" rel="noopener nofollow">
+      Market data by TradingView
+    </a>
+  </div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+  {
+    "symbols": [
+      {"proName":"OANDA:XAUUSD","title":"Gold / XAUUSD"},
+      {"proName":"TVC:DXY","title":"US Dollar Index"},
+      {"proName":"TVC:US10Y","title":"US 10Y Yield"},
+      {"proName":"TVC:USOIL","title":"WTI Oil"}
+    ],
+    "showSymbolLogo": true,
+    "isTransparent": true,
+    "displayMode": "adaptive",
+    "colorTheme": "dark",
+    "locale": "en"
+  }
+  </script>
+</div>
+
+<h2 class="section-title" id="ai">AI Fundamental Intelligence</h2>
+  <div class="card ai">
+    <span class="tag">ALGHIMISTRY AI ENGINE</span>
+    <h2 style="margin:15px 0">Market Intelligence</h2>
+    <p class="muted">
+      Sistem AI nantinya akan menganalisis berita, data ekonomi,
+      kebijakan The Fed, dan potensi dampaknya terhadap XAUUSD.
+    </p>
+    <button onclick="alert('AI Intelligence akan diaktifkan pada tahap integrasi API.')">
+      Explore AI Intelligence
+    </button>
+  </div>
+
+  <h2 class="section-title" id="calendar">Economic Calendar</h2>
+
+  <section style="
+    background:#0e1118;
+    border:1px solid #2b303b;
+    border-radius:14px;
+    padding:20px;
+    margin-bottom:18px;
+  ">
+    <div style="font-size:11px;font-weight:700;letter-spacing:1px;color:#858b98;">
+      FUNDAMENTAL MONITORING
+    </div>
+    <h3 style="margin:12px 0 8px;color:#f1f3f8;font-size:20px;">
+      USD Focus (United States)
+    </h3>
+    <p style="margin:0;color:#9da4b2;font-size:14px;line-height:1.6;">
+      Pantau jadwal rilis data ekonomi Amerika Serikat yang berpotensi
+      memengaruhi US Dollar dan harga Emas (XAUUSD).
+    </p>
+  </section>
+
+  <section style="
+    background:#191711;
+    border:1px solid #3b3220;
+    border-radius:12px;
+    padding:14px 18px;
+    margin-bottom:18px;
+    color:#c9a45c;
+    font-size:13px;
+    line-height:1.6;
+  ">
+    <strong>Trading Tip:</strong>
+    Perhatikan CPI, PCE, PPI, NFP, ISM, dan FOMC.
+    Volatilitas bisa meningkat saat data aktual berbeda dari ekspektasi.
+  </section>
+
+  <section style="
+    width:min(1100px, calc(100vw - 48px));
+    margin-left:calc((100% - min(1100px, calc(100vw - 48px))) / 2);
+    box-sizing:border-box;
+    background:#0e1118;
+    border:1px solid #2b303b;
+    border-radius:14px;
+    padding:12px;
+    overflow:hidden;
+    color-scheme:dark;
+    --tv-widget-background-color:transparent;
+    --tv-widget-text-color:#d1d4dc;
+    --tv-widget-accent-color:#d4ad62;
+  ">
+    <tv-economic-calendar
+  countries="us"
+  theme="dark"
+  style="display:block;width:100%;height:650px;min-height:650px;background:transparent;">
+</tv-economic-calendar>
+  </section>
+
+  <script type="module" src="https://widgets.tradingview-widget.com/w/id/tv-economic-calendar.js"></script>
+</main>
+
+<footer>
+  ALGHIMISTRY NEWS © 2026 · FINANCIAL MARKET INTELLIGENCE
+  <p style="margin-top:8px">Informasi dan analisis bukan jaminan pergerakan pasar.</p>
+</footer>
+
+
+</body>
+</html>
